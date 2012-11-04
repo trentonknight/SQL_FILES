@@ -1,0 +1,173 @@
+MariaDB [(none)]> use regisdb;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [regisdb]> source labBasicWK2.sql;
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+MariaDB [regisdb]> describe BRANCH;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| B_Id      | varchar(2)  | NO   | PRI | NULL    |       |
+| Librarian | varchar(20) | NO   |     | NULL    |       |
+| Address   | varchar(50) | NO   |     | NULL    |       |
+| Phone     | varchar(15) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+MariaDB [regisdb]> describe TITLE;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| T_id      | int(11)     | NO   | PRI | NULL    |       |
+| Title     | varchar(50) | NO   |     | NULL    |       |
+| Author    | varchar(20) | NO   |     | NULL    |       |
+| Publisher | varchar(20) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+MariaDB [regisdb]> describe HOLDING;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| B_id   | varchar(2) | YES  | MUL | NULL    |       |
+| T_id   | int(11)    | NO   | MUL | NULL    |       |
+| copies | int(11)    | NO   |     | NULL    |       |
++--------+------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+MariaDB [regisdb]> source fillBasicWK2.sql;
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [regisdb]> SELECT * FROM BRANCH;
++------+--------------+--------------------------------+--------------+
+| B_Id | Librarian    | Address                        | Phone        |
++------+--------------+--------------------------------+--------------+
+| B1   | John Day     | 3 Main Street Denver, CO 80202 | 720-444-5522 |
+| B2   | Angela Smith | Broadway LaFayette, CO 80026   | 303-322-7878 |
+| B3   | Ruth Evans   | Drive, Castle Rock, CO 80109   | 303-797-8284 |
++------+--------------+--------------------------------+--------------+
+3 rows in set (0.01 sec)
+
+MariaDB [regisdb]> SELECT * FROM TITLE;
++------+-------------------------+------------------+---------------+
+| T_id | Title                   | Author           | Publisher     |
++------+-------------------------+------------------+---------------+
+|    1 | Object Oriented Systems | Anna Elliott     | Sams House    |
+|    2 | Baseball Greats         | David Swift      | MacMillan     |
+|    3 | Picnic at the zoo       | Janice Henderson | Pandora Mills |
+|    4 | Fundamentals of Money   | Steve Allison    | Abacus Press  |
+|    5 | Database Systems        | Anna Elliott     | Sams House    |
++------+-------------------------+------------------+---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [regisdb]> SELECT * FROM HOLDING;
++------+------+--------+
+| B_id | T_id | copies |
++------+------+--------+
+| B1   |    1 |      3 |
+| B1   |    2 |      2 |
+| B1   |    3 |      1 |
+| B2   |    2 |      4 |
+| B2   |    4 |      2 |
+| B2   |    5 |      3 |
+| B3   |    3 |      1 |
+| B3   |    4 |      4 |
+| B3   |    1 |      3 |
+| B3   |    5 |      1 |
++------+------+--------+
+10 rows in set (0.01 sec)
+
+MariaDB [regisdb]> source listSearch.sql;
++-------------------------+
+| Q1                      |
++-------------------------+
+| Object Oriented Systems |
+| Database Systems        |
++-------------------------+
+2 rows in set (0.00 sec)
+
++------+
+| Q2   |
++------+
+| B1   |
+| B2   |
+| B3   |
+| B3   |
++------+
+4 rows in set (0.00 sec)
+
++------+
+| Q3B1 |
++------+
+|    6 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| Q3B2 |
++------+
+|    9 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| Q3B3 |
++------+
+|    9 |
++------+
+1 row in set (0.00 sec)
+
+MariaDB [regisdb]> notee;
